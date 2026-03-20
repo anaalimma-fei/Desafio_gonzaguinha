@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Que É, O Que É? | Gonzaguinha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    
+    :root {
+        /* Tons de Rosa/Vinho da paleta */
+        --burgundy: #6C0820;           /* Vinho profundo */
+        --cherry-blossom: #F2AEBC;    /* Rosa suave */
+        --misty-rose: #F2DCDB;        /* Rosa muito claro/pálido (bom para fundo secundário) */
+        
+        /* Tons de Azul da paleta */
+        --silver-lake-blue: #5A86CB;   /* Azul médio, suave */
+        --lapis-lazuli: #3D5D91;     /* Azul escuro, sóbrio */
+        
+        /* Cores Auxiliares */
+        --branco-puro: #FFFFFF;
+        
+        /* --- COR DE TEXTO FORÇADA --- */
+        --preto-solido: #000000;     /* Preto puro para contraste */
+    }
+
+    body { 
+        background-color: var(--misty-rose); /* Fundo rosa pálido para suavidade */
+        color: var(--preto-solido); /* Todo o texto do corpo em preto por padrão */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    }
+
+    /* --- Garante que o texto dos CARDS seja Preto --- */
+    .card, .card-title, .card-text, .card-body p {
+        color: var(--preto-solido) !important;
+    }
+
+    /* --- Garante que o texto da SIDEBAR seja Preto --- */
+    .col-md-4 .card-title, .col-md-4 .card-body p, .list-group-item {
+        color: var(--preto-solido) !important;
+    }
+
+    /* --- Garante que o texto dos INPUTS de Newsletter seja Preto --- */
+    input::placeholder, input[type="email"] {
+        color: var(--preto-solido) !important;
+    }
+
+    /* --- ESTILOS ORIGINAIS ATUALIZADOS --- */
+
+    /* Navbar com o tom Lapis Lazuli e borda Burgundy */
+    .navbar { 
+        background-color: var(--lapis-lazuli) !important; 
+        border-bottom: 4px solid var(--burgundy); 
+    }
+    .navbar-brand, .nav-link { 
+        color: var(--misty-rose) !important; /* Texto claro na navbar escura */
+        font-weight: bold; 
+    }
+    .nav-link:hover {
+        color: var(--cherry-blossom) !important;
+    }
+
+    /* Alerta usando o Silver Lake Blue */
+    .alert-custom {
+        background-color: var(--silver-lake-blue);
+        color: white !important; /* Texto branco no alerta azul */
+        border: none;
+        font-weight: bold;
+    }
+
+    /* Botão com o Burgundy profundo */
+    .btn-custom { 
+        background-color: var(--burgundy); 
+        color: rgb(243, 230, 230) !important; /* Texto branco no botão escuro */
+        border: none; 
+        font-weight: bold;
+        transition: 0.3s;
+        border-radius: 8px;
+    }
+    .btn-custom:hover { 
+        background-color: var(--lapis-lazuli); 
+        transform: scale(1.05);
+    }
+
+    /* Cards com fundo branco e bordas em Lapis Lazuli */
+    .card { 
+        background-color: var(--branco-puro); 
+        border: 2px solid var(--lapis-lazuli); 
+        border-radius: 12px;
+    }
+    .card:hover {
+        border-color: var(--burgundy);
+        box-shadow: 0 5px 15px rgba(108, 8, 32, 0.15);
+    }
+
+    /* Caixa de pergunta com fundo em Cherry Blossom */
+    .pergunta-box { 
+        border-left: 6px solid var(--burgundy); 
+        background-color: var(--cherry-blossom);
+        padding: 20px; 
+        color: var(--burgundy) !important; /* Texto vinho na caixa rosa */
+        font-style: italic;
+        font-weight: 500;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .footer-custom { 
+        background-color: var(--burgundy); 
+        color: var(--misty-rose); 
+        border-top: 5px solid var(--lapis-lazuli);
+    }
+
+    /* Textos de destaque (se quiser usar) */
+    .texto-vinho { color: var(--burgundy) !important; font-weight: bold; }
+    .texto-azul { color: var(--lapis-lazuli) !important; font-weight: bold; }
+
+    /* --- AJUSTE DO TAMANHO DO CARROSSEL --- */
+    .carousel-item img { 
+        max-height: 300px; /* Reduzi de 450px para 300px */
+        object-fit: cover; /* Mantém a imagem cobrindo a área sem distorcer */
+        width: 100%;
+        border-radius: 12px;
+    }
+    /* Ajuste para telas menores */
+    @media (max-width: 768px) {
+        .carousel-item img {
+            max-height: 200px;
+        }
+    }
+</style>
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark shadow">
+        <div class="container">
+            <a class="navbar-brand" href="#">GONZAGUINHA.VIBE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#filosofia">A Filosofia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#verso">A Resposta</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Sua Visão</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        
+        <div class="alert alert-dismissible fade show text-center" style="background-color: var(--rosa-principal); color: white;">
+            <strong>Pergunta do dia:</strong> Você teria a vergonha de ser feliz? 
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <div id="carouselMusica" class="carousel slide shadow-lg mb-5" data-bs-ride="carousel">
+            <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                    <img src="/Ｘango da Mangeira.jpg" class="d-block w-100" alt="Vida Alegria">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
+                        <h5>"Viver e não ter a vergonha de ser feliz"</h5>
+                        <p>A beleza de ser um eterno aprendiz.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/download (1).jpg" class="d-block w-100" alt="Luta">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
+                        <h5>"É a luta"</h5>
+                        <p>O suor que rega a nossa história.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="/kkkkkk.jpg" class="d-block w-100" alt="Coração">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
+                        <h5>"É a batida de um coração"</h5>
+                        <p>O que é, o que é?</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselMusica" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselMusica" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <h2 class="card-title rosa-texto">A Vida é o quê?</h2>
+                        <p class="lead">A música nos desafia a definir nossa existência através de diferentes prismas.</p>
+                        
+                        <div class="pergunta-box">
+                            "Há quem fale que a vida é um lamento... há quem diga que a vida é nobreza..."
+                        </div>
+
+                        <p>Para Gonzaguinha, a resposta não é única. O site explora essa dualidade entre o rosa (a doçura da felicidade) e o preto (a dureza da realidade/luta).</p>
+                        
+                        <button class="btn btn-rosa mt-3" data-bs-toggle="modal" data-bs-target="#contatoModal">
+                            Dê sua resposta
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 mb-4">
+                        <div class="card h-100">
+                            <img src="/brasil.jpg" class="card-img-top" alt="O Aprendiz">
+                            <div class="card-body">
+                                <h5 class="card-title rosa-texto">O Aprendiz</h5>
+                                <p class="card-text">A humildade de aceitar que o caminho é mais importante que a chegada.</p>
+                                <a href="https://www.letras.mus.br/gonzaguinha/46261/" target="_blank" class="btn btn-outline-light btn-sm">Ver Letra</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <div class="card h-100">
+                            <img src="/Afinal, o que é um Samba Roots_.jpg" class="card-img-top" alt="A Resposta">
+                            <div class="card-body">
+                                <h5 class="card-title rosa-texto">A Resposta</h5>
+                                <p class="card-text">"Desejo o que é puro e o que é belo". A vida é o que você faz dela.</p>
+                                <button class="btn btn-rosa btn-sm">Sentir a batida</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4 shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title rosa-texto">Manifesto da Vida</h5>
+                        <p class="small">Receba reflexões semanais sobre a arte de viver sem vergonha de ser feliz.</p>
+                        <form>
+                            <input type="email" class="form-control mb-2 bg-dark text-white border-secondary" placeholder="Seu melhor e-mail" required>
+                            <button type="submit" class="btn btn-rosa w-100">Cantar junto</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title rosa-texto">As Faces da Vida</h5>
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item bg-transparent text-white border-secondary">🔥 É a luta e o prazer</div>
+                            <div class="list-group-item bg-transparent text-white border-secondary">✨ É o sopro do criador</div>
+                            <div class="list-group-item bg-transparent text-white border-secondary">❤️ É a batida do coração</div>
+                            <div class="list-group-item bg-transparent text-white border-secondary">🎭 É o brilho de um cenário</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="contatoModal">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white border-rosa">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title rosa-texto">O que é a vida para você?</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Sua definição (seja poeta!):</label>
+                            <textarea class="form-control bg-dark text-white border-secondary" rows="3" placeholder="Ex: A vida é uma tela em branco..."></textarea>
+                        </div>
+                        <button type="button" class="btn btn-rosa w-100">Enviar minha visão</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-custom text-white mt-5 py-4">
+        <div class="container text-center">
+            <p class="mb-2">"A vida é bonita, é bonita e é bonita!"</p>
+            <p class="small text-secondary mb-0">&copy; 2026 Projeto Educacional - Tema: Gonzaguinha</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
