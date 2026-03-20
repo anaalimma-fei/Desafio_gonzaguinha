@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
     
+    /* Adicionado para a rolagem ficar suave ao clicar no menu */
+    html { scroll-behavior: smooth; }
+
     :root {
         /* Tons de Rosa/Vinho da paleta */
         --burgundy: #6C0820;           /* Vinho profundo */
@@ -30,75 +33,85 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
     }
 
-    /* --- Garante que o texto dos CARDS seja Preto --- */
+    /* --- INTERAÇÃO DO HEADER (APENAS CSS) --- */
+    .navbar { 
+        background-color: var(--lapis-lazuli) !important; 
+        border-bottom: 4px solid var(--burgundy); 
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+        transition: all 0.4s ease-in-out; /* Suaviza a mudança */
+    }
+
+    /* Efeito ao passar o mouse no Header */
+    .navbar:hover {
+        background-color: var(--burgundy) !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .navbar-brand, .nav-link { 
+        color: var(--misty-rose) !important; 
+        font-weight: bold; 
+        position: relative;
+    }
+
+    /* Linha animada sob os links do menu */
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 5px;
+        left: 10%;
+        background-color: var(--cherry-blossom);
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 80%;
+    }
+
+    .nav-link:hover {
+        color: var(--branco-puro) !important;
+    }
+
+    /* --- ESTILOS DOS CARDS E COMPONENTES --- */
     .card, .card-title, .card-text, .card-body p {
         color: var(--preto-solido) !important;
     }
 
-    /* --- Garante que o texto da SIDEBAR seja Preto --- */
-    .col-md-4 .card-title, .col-md-4 .card-body p, .list-group-item {
-        color: var(--preto-solido) !important;
-    }
-
-    /* --- Garante que o texto dos INPUTS de Newsletter seja Preto --- */
-    input::placeholder, input[type="email"] {
-        color: var(--preto-solido) !important;
-    }
-
-    /* --- ESTILOS ORIGINAIS ATUALIZADOS --- */
-
-    /* Navbar com o tom Lapis Lazuli e borda Burgundy */
-    .navbar { 
-        background-color: var(--lapis-lazuli) !important; 
-        border-bottom: 4px solid var(--burgundy); 
-    }
-    .navbar-brand, .nav-link { 
-        color: var(--misty-rose) !important; /* Texto claro na navbar escura */
-        font-weight: bold; 
-    }
-    .nav-link:hover {
-        color: var(--cherry-blossom) !important;
-    }
-
-    /* Alerta usando o Silver Lake Blue */
     .alert-custom {
         background-color: var(--silver-lake-blue);
-        color: white !important; /* Texto branco no alerta azul */
+        color: white !important;
         border: none;
         font-weight: bold;
     }
 
-    /* Botão com o Burgundy profundo */
-    .btn-custom { 
-        background-color: var(--burgundy); 
-        color: rgb(243, 230, 230) !important; /* Texto branco no botão escuro */
+    .btn-custom, .btn-rosa { 
+        background-color: var(--burgundy) !important; 
+        color: rgb(243, 230, 230) !important; 
         border: none; 
         font-weight: bold;
         transition: 0.3s;
         border-radius: 8px;
     }
-    .btn-custom:hover { 
-        background-color: var(--lapis-lazuli); 
+
+    .btn-custom:hover, .btn-rosa:hover { 
+        background-color: var(--lapis-lazuli) !important; 
         transform: scale(1.05);
     }
 
-    /* Cards com fundo branco e bordas em Lapis Lazuli */
     .card { 
         background-color: var(--branco-puro); 
         border: 2px solid var(--lapis-lazuli); 
         border-radius: 12px;
     }
-    .card:hover {
-        border-color: var(--burgundy);
-        box-shadow: 0 5px 15px rgba(108, 8, 32, 0.15);
-    }
 
-    /* Caixa de pergunta com fundo em Cherry Blossom */
     .pergunta-box { 
         border-left: 6px solid var(--burgundy); 
         background-color: var(--cherry-blossom);
         padding: 20px; 
-        color: var(--burgundy) !important; /* Texto vinho na caixa rosa */
+        color: var(--burgundy) !important; 
         font-style: italic;
         font-weight: 500;
         border-radius: 0 8px 8px 0;
@@ -110,25 +123,44 @@
         border-top: 5px solid var(--lapis-lazuli);
     }
 
-    /* Textos de destaque (se quiser usar) */
     .texto-vinho { color: var(--burgundy) !important; font-weight: bold; }
-    .texto-azul { color: var(--lapis-lazuli) !important; font-weight: bold; }
 
-    /* --- AJUSTE DO TAMANHO DO CARROSSEL --- */
     .carousel-item img { 
-        max-height: 300px; /* Reduzi de 450px para 300px */
-        object-fit: cover; /* Mantém a imagem cobrindo a área sem distorcer */
+        max-height: 300px; 
+        object-fit: cover; 
         width: 100%;
         border-radius: 12px;
     }
-    /* Ajuste para telas menores */
+
     @media (max-width: 768px) {
-        .carousel-item img {
-            max-height: 200px;
-        }
+        .carousel-item img { max-height: 200px; }
+    }
+
+    /* --- ESTILO DO MURAL ADICIONADO --- */
+    #mural-respostas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 20px 0;
+    }
+
+    .post-it {
+        background-color: var(--branco-puro);
+        border-left: 6px solid var(--burgundy);
+        padding: 15px;
+        width: 100%;
+        max-width: 300px;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+        border-radius: 4px;
+        font-style: italic;
+        animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 </style>
-    </style>
 </head>
 <body>
 
@@ -140,7 +172,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#filosofia">A Filosofia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#filosofia">Mural</a></li>
                     <li class="nav-item"><a class="nav-link" href="#verso">A Resposta</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contato">Sua Visão</a></li>
                 </ul>
@@ -150,7 +182,7 @@
 
     <div class="container mt-4">
         
-        <div class="alert alert-dismissible fade show text-center" style="background-color: var(--rosa-principal); color: white;">
+        <div class="alert alert-dismissible fade show text-center alert-custom">
             <strong>Pergunta do dia:</strong> Você teria a vergonha de ser feliz? 
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -171,13 +203,6 @@
                         <p>O suor que rega a nossa história.</p>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="/kkkkkk.jpg" class="d-block w-100" alt="Coração">
-                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
-                        <h5>"É a batida de um coração"</h5>
-                        <p>O que é, o que é?</p>
-                    </div>
-                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselMusica" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
@@ -188,17 +213,17 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8" id="filosofia">
                 <div class="card mb-4 shadow">
                     <div class="card-body">
-                        <h2 class="card-title rosa-texto">A Vida é o quê?</h2>
+                        <h2 class="card-title texto-vinho">A Vida é o quê?</h2>
                         <p class="lead">A música nos desafia a definir nossa existência através de diferentes prismas.</p>
                         
                         <div class="pergunta-box">
                             "Há quem fale que a vida é um lamento... há quem diga que a vida é nobreza..."
                         </div>
 
-                        <p>Para Gonzaguinha, a resposta não é única. O site explora essa dualidade entre o rosa (a doçura da felicidade) e o preto (a dureza da realidade/luta).</p>
+                        <p class="mt-3">Para Gonzaguinha, a resposta não é única. Explore a dualidade entre o rosa e o vinho.</p>
                         
                         <button class="btn btn-rosa mt-3" data-bs-toggle="modal" data-bs-target="#contatoModal">
                             Dê sua resposta
@@ -206,14 +231,22 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div id="mural" class="mb-5">
+                    <h3 class="texto-vinho">Mural de Respostas</h3>
+                    <hr>
+                    <div id="mural-respostas">
+                        <div class="post-it">"Viver e não ter a vergonha de ser feliz!"</div>
+                    </div>
+                </div>
+
+                <div class="row" id="verso">
                     <div class="col-sm-6 mb-4">
                         <div class="card h-100">
                             <img src="/brasil.jpg" class="card-img-top" alt="O Aprendiz">
                             <div class="card-body">
-                                <h5 class="card-title rosa-texto">O Aprendiz</h5>
-                                <p class="card-text">A humildade de aceitar que o caminho é mais importante que a chegada.</p>
-                                <a href="https://www.letras.mus.br/gonzaguinha/46261/" target="_blank" class="btn btn-outline-light btn-sm">Ver Letra</a>
+                                <h5 class="card-title texto-vinho">O Aprendiz</h5>
+                                <p class="card-text">A humildade de aceitar que o caminho é mais importante.</p>
+                                <a href="https://www.letras.mus.br/gonzaguinha/46261/" target="_blank" class="btn btn-outline-dark btn-sm">Ver Letra</a>
                             </div>
                         </div>
                     </div>
@@ -221,8 +254,8 @@
                         <div class="card h-100">
                             <img src="/Afinal, o que é um Samba Roots_.jpg" class="card-img-top" alt="A Resposta">
                             <div class="card-body">
-                                <h5 class="card-title rosa-texto">A Resposta</h5>
-                                <p class="card-text">"Desejo o que é puro e o que é belo". A vida é o que você faz dela.</p>
+                                <h5 class="card-title texto-vinho">A Resposta</h5>
+                                <p class="card-text">"Desejo o que é puro e o que é belo".</p>
                                 <button class="btn btn-rosa btn-sm">Sentir a batida</button>
                             </div>
                         </div>
@@ -230,13 +263,14 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4" id="contato">
                 <div class="card mb-4 shadow">
                     <div class="card-body text-center">
-                        <h5 class="card-title rosa-texto">Manifesto da Vida</h5>
-                        <p class="small">Receba reflexões semanais sobre a arte de viver sem vergonha de ser feliz.</p>
-                        <form>
-                            <input type="email" class="form-control mb-2 bg-dark text-white border-secondary" placeholder="Seu melhor e-mail" required>
+                        <h5 class="card-title texto-vinho">Sua Visão</h5>
+                        <p class="small">Receba reflexões semanais por e-mail.</p>
+                        
+                        <form action="https://formspree.io/f/seu-email@exemplo.com" method="POST">
+                            <input type="email" name="email" class="form-control mb-2" placeholder="Seu melhor e-mail" required>
                             <button type="submit" class="btn btn-rosa w-100">Cantar junto</button>
                         </form>
                     </div>
@@ -244,12 +278,11 @@
 
                 <div class="card shadow">
                     <div class="card-body">
-                        <h5 class="card-title rosa-texto">As Faces da Vida</h5>
+                        <h5 class="card-title texto-vinho">As Faces da Vida</h5>
                         <div class="list-group list-group-flush">
-                            <div class="list-group-item bg-transparent text-white border-secondary">🔥 É a luta e o prazer</div>
-                            <div class="list-group-item bg-transparent text-white border-secondary">✨ É o sopro do criador</div>
-                            <div class="list-group-item bg-transparent text-white border-secondary">❤️ É a batida do coração</div>
-                            <div class="list-group-item bg-transparent text-white border-secondary">🎭 É o brilho de um cenário</div>
+                            <div class="list-group-item bg-transparent">🔥 É a luta e o prazer</div>
+                            <div class="list-group-item bg-transparent">✨ É o sopro do criador</div>
+                            <div class="list-group-item bg-transparent">❤️ É a batida do coração</div>
                         </div>
                     </div>
                 </div>
@@ -259,18 +292,18 @@
 
     <div class="modal fade" id="contatoModal">
         <div class="modal-dialog">
-            <div class="modal-content bg-dark text-white border-rosa">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title rosa-texto">O que é a vida para você?</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title texto-vinho">O que é a vida para você?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="formMural" action="https://formspree.io/f/seu-email@exemplo.com" method="POST" onsubmit="adicionarAoMuralLocal(event)">
                         <div class="mb-3">
                             <label class="form-label">Sua definição (seja poeta!):</label>
-                            <textarea class="form-control bg-dark text-white border-secondary" rows="3" placeholder="Ex: A vida é uma tela em branco..."></textarea>
+                            <textarea id="textoMural" name="mensagem" class="form-control" rows="3" placeholder="Ex: A vida é uma tela em branco..." required></textarea>
                         </div>
-                        <button type="button" class="btn btn-rosa w-100">Enviar minha visão</button>
+                        <button type="submit" class="btn btn-rosa w-100">Enviar minha visão</button>
                     </form>
                 </div>
             </div>
@@ -285,5 +318,25 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function adicionarAoMuralLocal(event) {
+            // Pega o texto do campo
+            const texto = document.getElementById('textoMural').value;
+            const mural = document.getElementById('mural-respostas');
+
+            if (texto.trim() !== "") {
+                // Cria o novo elemento visual
+                const novoCard = document.createElement('div');
+                novoCard.className = 'post-it';
+                novoCard.innerHTML = `"${texto}"`;
+                
+                // Adiciona no topo do mural
+                mural.prepend(novoCard);
+            }
+            
+            // O formulário continuará o envio para o Formspree normalmente
+        }
+    </script>
 </body>
 </html>
